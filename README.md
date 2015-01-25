@@ -3,6 +3,11 @@
 A simple JS script to replace empty images by placeholders. It uses HTML5 Canvas and can be useful for development.
 
 <s>jQuery</S> is NOT required.
+
+Example of placeholder that is generated:
+
+![](https://raw.githubusercontent.com/gsantiago/imagePlaceholder.js/master/generated_placeholder.png)
+
 Usage
 ---
 Include the script right before ```</body>```
@@ -20,7 +25,7 @@ It will replace the images without ```src``` defined, but ```width``` and ```hei
 <img src="image" width="100" height="100">
 <img src="">
 ```
-<br>
+
 Options
 ---
 The script offers some options to customize the generated placeholders.
