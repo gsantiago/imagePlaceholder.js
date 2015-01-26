@@ -40,13 +40,13 @@
     };
 
     // Generate an image with canvas
-    var makeImage = function (width, height) {
+    var makeImage = function (width, height, text) {
         if (isNaN(width) || isNaN(height)) return false;
 
         canvas.width = width;
         canvas.height = height;
 
-        var text = width + 'x' + height;
+        text = text || width + 'x' + height;
 
         ctx.fillStyle = imagePlaceholder.backgroundColor;
         ctx.fillRect(0, 0, width, height);
@@ -66,19 +66,44 @@
     // Get all images from DOM and replace the empty images
     imagePlaceholder.start = function () {
         var images = document.querySelectorAll('img'),
-            value;
+            value = true,
+            text;
+
         for (var i = 0, max = images.length; i < max; i += 1) {
+
             var img = images[i];
+
+            // Check de 'SRC' attribute
             if (img.attributes.src) {
-                value = !img.attributes.src.value;
-            } else {
-                value = true;
+
+                value = img.attributes.src.value;
+
+                if (typeof value === 'string' && value.trim().length > 0) {
+                    if (/^placeholder .+/i.test(value)) {
+                        text = value.replace(/^placeholder/i, '');
+                        value = true;
+                    } else {
+                        value = false;
+                    }
+                } else {
+                    value = true;
+                }
             }
+
+            // Check the 'DATA-PLACEHOLDER' attribute
+            text = text || img.getAttribute('data-placeholder');
+
             if ((value && img.width && img.height) || img.hasPlaceholder) {
-                img.src = makeImage(img.width, img.height);
+                if (text) {
+                    img.src = makeImage(img.width, img.height, text);
+                    text = false;
+                } else {
+                    img.src = makeImage(img.width, img.height);
+                }
                 img.hasPlaceholder = true;
             }
         }
+
     };
 
     // Initiate the script
