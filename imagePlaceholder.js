@@ -71,7 +71,9 @@
 
         for (var i = 0, max = images.length; i < max; i += 1) {
 
-            var img = images[i];
+            var img = images[i],
+                width = img.attributes.width.value,
+                height = img.attributes.height.value;
 
             // Check de 'SRC' attribute
             if (img.attributes.src) {
@@ -93,12 +95,12 @@
             // Check the 'DATA-PLACEHOLDER' attribute
             text = text || img.getAttribute('data-placeholder');
 
-            if ((value && img.width && img.height) || img.hasPlaceholder) {
+            if ((value && !isNaN(width) && !isNaN(height)) || img.hasPlaceholder) {
                 if (text) {
-                    img.src = makeImage(img.width, img.height, text);
+                    img.src = makeImage(width, height, text);
                     text = false;
                 } else {
-                    img.src = makeImage(img.width, img.height);
+                    img.src = makeImage(width, height);
                 }
                 img.hasPlaceholder = true;
             }
