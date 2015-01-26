@@ -4,9 +4,10 @@ A simple JS script to replace empty images by placeholders. It uses HTML5 Canvas
 
 <s>jQuery</S> is NOT required.
 
-Example of placeholder that is generated:
+Example of placeholders that are generated:
 
 ![](https://raw.githubusercontent.com/gsantiago/imagePlaceholder.js/master/generated_placeholder.png)
+![](https://raw.githubusercontent.com/gsantiago/imagePlaceholder.js/master/customtext_placeholder.png)
 
 Usage
 ---
@@ -24,6 +25,16 @@ It will replace the images without ```src``` defined, but ```width``` and ```hei
 <!-- These images WON'T be replaced -->
 <img src="image" width="100" height="100">
 <img src="">
+```
+
+You you want to use custom text instead of the dimensions, there are two ways to do it. Using the ```data-placeholder``` attribute or the ```src``` itself.
+
+```html
+<!-- Insert the text after 'placeholder' in 'src' attribute -->
+<img src="placeholder My custom text comes here" width="500" height="500">
+
+<!-- OR... use the 'data-placeholder' attribute -->
+<img data-placeholder="My custom text" width="500" height="500">
 ```
 
 Options
