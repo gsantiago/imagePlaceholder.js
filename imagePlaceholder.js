@@ -12,7 +12,9 @@
         font: 'Arial',
         fontColor: '#000',
         maxFontSize: 172,
-        backgroundColor: '#ddd'
+        backgroundColor: '#ddd',
+        paddingVertical: 10,
+        paddingHorizontal: 10
     };
 
     // Canvas that will be used for all images
@@ -21,7 +23,7 @@
 
     // Get the ideal font-size to fit the image based on its height
     var getFontSizeHeight = function (height, fontSize) {
-        if (fontSize > height - 5) {
+        if (fontSize > height - imagePlaceholder.paddingVertical) {
             return getFontSizeHeight(height, fontSize - 1);
         } else {
             return fontSize;
@@ -32,7 +34,7 @@
     var getFontSizeWidth = function (ctx, text, width, fontSize) {
         ctx.font = fontSize + 'px ' + imagePlaceholder.font;
         var textWidth = ctx.measureText(text).width;
-        if (textWidth > width - 10) {
+        if (textWidth > width - imagePlaceholder.paddingHorizontal) {
             return getFontSizeWidth(ctx, text, width, fontSize - 1);
         } else {
             return fontSize;
