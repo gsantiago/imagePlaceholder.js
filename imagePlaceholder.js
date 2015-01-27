@@ -72,8 +72,16 @@
         for (var i = 0, max = images.length; i < max; i += 1) {
 
             var img = images[i],
-                width = img.attributes.width.value,
+                width,
+                height;
+
+            if (img.attributes.width) {
+                width = img.attributes.width.value;
+            }
+
+            if (img.attributes.height) {
                 height = img.attributes.height.value;
+            }
 
             // Check de 'SRC' attribute
             if (img.attributes.src) {
