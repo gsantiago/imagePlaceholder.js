@@ -45,7 +45,9 @@ The script offers some options to customize the generated placeholders.
 font: 'Arial',
 fontColor: '#000',
 maxFontSize: 172,
-backgroundColor: '#ddd'
+backgroundColor: '#ddd',
+paddingVertical: 10,
+paddingHorizontal: 10
 ```
 
 To set the options, just change the imagePlaceholder properties after include the script and call the ```update()``` method.
