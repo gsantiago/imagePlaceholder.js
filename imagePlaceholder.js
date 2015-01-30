@@ -2,7 +2,7 @@
 * imagePlaceholder.js
 * Replaces empty images by placeholders
 * @author Guilherme Santiago - github.com/gsantiago
-* @version 0.1.1
+* @version 0.1.2
 */
 (function (window, document) {
     'use strict';
