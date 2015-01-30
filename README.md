@@ -16,9 +16,10 @@ Include the script right before ```</body>```
 <script src="imagePlaceholder.js"></script>
 ```
 
-It will replace the images without ```src``` defined, but ```width``` and ```height``` are required.
+It will replace the images without ```src``` defined, but ```width``` and ```height``` are required. However, you can define the size in the ```src``` using the ```[number]x[number]``` pattern, like ```250x250``` for example.
 ```html
 <!-- These images will be replaced -->
+<img src="150x150">
 <img width="150" height="150">
 <img src="" width="50" height="50">
 
