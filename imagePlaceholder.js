@@ -69,13 +69,18 @@
     imagePlaceholder.start = function () {
         var images = document.querySelectorAll('img'),
             value = true,
-            text;
+            text,
+            width,
+            height,
+            size;
 
         for (var i = 0, max = images.length; i < max; i += 1) {
 
-            var img = images[i],
-                width,
-                height;
+            var img = images[i];
+
+            width = undefined;
+            height = undefined;
+            size = undefined;
 
             if (img.attributes.width) {
                 width = img.attributes.width.value;
@@ -91,12 +96,23 @@
                 value = img.attributes.src.value;
 
                 if (typeof value === 'string' && value.trim().length > 0) {
-                    if (/^placeholder .+/i.test(value)) {
+
+
+                    size = value.match(/^([0-9]+)x([0-9]+)$/i);
+
+                    // check [number]X[number] pattern in 'src' attribute
+                    if (size) {
+                        width = size[1];
+                        height = size[2];
+                        value = true;
+                    } else if (/^placeholder .+/i.test(value)) {
                         text = value.replace(/^placeholder/i, '');
                         value = true;
                     } else {
                         value = false;
                     }
+
+
                 } else {
                     value = true;
                 }
